@@ -13,6 +13,9 @@ read the book).
 // PSEUDOCODE
 // Javascript:
 
+const shelf = document.querySelector(".container");
+console.log(shelf);
+
 /*
 TO STORE BOOKS
 Array: library
@@ -48,6 +51,11 @@ Function: addBook()
     4. Push book object to library array
     4. Call updateDisplay()
 */
+function addBook(title, author, pages, read) {
+    const pagesAsInt = +pages;
+    const book = new Book(title, author, pagesAsInt, read);
+    library.push(book);
+}
 
 /*
 TO UPDATE SHELF DISPLAY
@@ -62,6 +70,24 @@ Function: updateDisplay()
     6. Assign matching style classes to card
     7. Append card to shelf container
 */
+
+function updateDisplay() {
+    for (const book of library) {
+        const bookCover = document.createElement("p");
+        console.log(book);
+        bookCover.textContent = `${book.title}
+                                 ${book.author}
+                                 ${book.pages}
+                                 ${book.read}`;
+        shelf.appendChild(bookCover);
+    }
+}
+
+
+addBook("Hello", "Goodbye", "123", true);
+addBook("Howdy", "Partner", "246", false);
+
+updateDisplay();
 
 /*
 TO READ/UNREAD A BOOK
