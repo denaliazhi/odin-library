@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>Ye Olde Bookshelf</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Ye Olde Book Shelf</h1>
-        <img src="assets/hamlet.png" alt="Picture of Hamlet, seated and pensive">
-        <p>To read or not to read? That is the question</p>
-    </header>
-
-    <form action="" method="post" id="add-book-form">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="Hamlet">
-        
-        <label for="author">Author</label>
-        <input type="text" id="author" name="author" placeholder="William Shakespeare">
-        
-        <label for="pages">Page count</label>
-        <input type="number" id="pages" name="pages" placeholder="432">
-
-        <input type="checkbox" id="read" name="read">
-        <label for="read">I didst read this book</label>
-    </form>
-    <button type="submit" form="add-book-form">+ Add to shelf</button>
-
-    <div class="container">
-        <div class="card">
-            <p class="read-status">didst read</p>
-            <div class="side-bar">
-                <div>
-                    <img src="assets/thumb-up.png" alt="Thumbs up icon">
-                    <img class="inactive" src="assets/thumb-down.png" alt="Thumbs down icon">
-                </div>
-                <button>x</button>
+    <div>
+        <header>
+            <h1>Ye Olde Bookshelf</h1>
+            <img src="assets/hamlet.png" alt="Picture of Hamlet, seated and pensive">
+            <p>To read or not to read? That is the question</p>
+        </header>
+        <form action="" method="post" id="add-book-form">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Hamlet">
             </div>
-            <div class="cover">
-                <h2>Romeo & Juliet</h2>
-                <p>William Shakespeare</p>
-                <p>432 pages</p>
+            <div>
+                <label for="pages">Page count</label>
+                <input type="number" id="pages" name="pages" placeholder="432">
+            </div>
+            <div>
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" placeholder="William Shakespeare">
+            </div>
+            <div>
+                <input type="checkbox" id="read" name="read">
+                <label for="read">I didst read this book</label>
+            </div>
+        </form>
+        <button type="submit" form="add-book-form">+ Add to shelf</button>
+        <div class="container">
+            <div class="card">
+                <p class="read-status">didst read</p>
+                <div class="side-bar">
+                    <div>
+                        <img src="assets/thumb-up.png" alt="Thumbs up icon">
+                        <img class="inactive" src="assets/thumb-down.png" alt="Thumbs down icon">
+                    </div>
+                    <button>x</button>
+                </div>
+                <div class="cover">
+                    <h2>Romeo & Juliet</h2>
+                    <p>William Shakespeare</p>
+                    <p>432 pages</p>
+                </div>
             </div>
         </div>
     </div>

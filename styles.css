@@ -5,10 +5,15 @@
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
     text-align: center;
+    font-family:  "IM Fell English", 'Times New Roman', serif;
+}
 
-    padding: 8.6% 20% 0 20%;
+body > div {
+    padding-top: 3.5rem;
+    width: clamp(37.13rem, 80%, 50rem);
+    margin: auto;
 }
 
 h1 {
@@ -20,11 +25,18 @@ h2 {
     margin-bottom: 0.31rem;
 }
 
+button, 
+input,
+input:focus {
+    appearance: none;
+    border: none;
+    outline: none;
+}
+
 /* ---- HEADER ---- */
 
 header {
     height: 8rem;
-
     display: flex;
     justify-content: space-between;
 }
@@ -42,7 +54,7 @@ header h1 {
 
 header p {
     align-self: center;
-    width: 9.13rem;
+    width: 9.7rem;
     text-align: right;
 }
 
@@ -53,6 +65,70 @@ header p {
 }
 
 /* ---- FORM ---- */
+
+form {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 0.75rem;
+
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    column-gap: 2.5rem;
+    row-gap: 0.5rem;
+
+    text-align: left;
+}
+
+form > div {
+    display: flex;
+}
+
+form :not(div:last-child) label,  /* Title, Page count, Author */
+form div:last-child input { /* Checkbox */
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+form div:nth-child(odd) label {
+    min-width: 3rem;
+}
+
+form div:nth-child(2) label {
+    min-width: 4.6rem;
+}
+
+form div:nth-child(odd) input,
+form input[type="number"] {
+    width: 100%;
+}
+
+form + button {
+    padding: 0.45rem 0.85rem;
+    background-color: #fff;
+    border-bottom-right-radius: 0.63rem; 
+    border-bottom-left-radius: 0.63rem;
+}
+
+form input {
+    background-color: #f1f1f1;
+    border-radius: 0.2rem;
+}
+
+form input[type='text'],
+form input[type='number'] {
+    padding: 0.2rem 1rem;
+}
+
+form input[type="checkbox"] {
+    border: #000 1px solid;
+    width: 20px;
+}
+
+form input[type="checkbox"]:checked {
+    background-image: url(assets/checkmark.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
 
 /* ---- CONTAINER ---- */
 
@@ -104,9 +180,6 @@ header p {
 }
 
 .side-bar button {
-    appearance: none;
-    border: none;
-
     margin-bottom: 0.63rem;
 }
 
