@@ -48,6 +48,20 @@ Function: addBook()
     4. Push book object to library array
     4. Call updateDisplay()
 */
+const bookForm = document.querySelector("#add-book-form");
+
+bookForm.addEventListener("submit", (e) => {
+    e.preventDefault(); //Prevent default form submission
+
+    const bookData = new FormData(bookForm);
+    addBook(bookData.get('title'), 
+            bookData.get('author'),
+            bookData.get('pages'),
+            bookData.get('read'));
+    
+    updateDisplay(library.at(-1));
+})
+
 function addBook(title, author, pages, read) {
     const pagesAsInt = +pages;
     const book = new Book(title, author, pagesAsInt, read);
@@ -68,78 +82,71 @@ Function: updateDisplay()
     7. Append card to shelf container
 */
 
-function updateDisplay() {
-    for (const book of library) {
+function updateDisplay(book) {
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.setAttribute('data-id', book.id);
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.setAttribute('data-id', book.id);
 
-        const readStatus = document.createElement('p');
-        readStatus.classList.add('read-status');
-        readStatus.textContent = book.read ? 'didst read' : 'didst not read';
-        
-        card.appendChild(readStatus);
+    const readStatus = document.createElement('p');
+    readStatus.classList.add('read-status');
+    readStatus.textContent = book.read ? 'didst read' : 'didst not read';
+    
+    card.appendChild(readStatus);
 
-        // -- Side bar components --
+    // -- Side bar components --
 
-        const sidebar = document.createElement('div');
-        sidebar.classList.add('side-bar');
+    const sidebar = document.createElement('div');
+    sidebar.classList.add('side-bar');
 
-        const toggleRead = document.createElement('div');
+    const toggleRead = document.createElement('div');
 
-        const thumbUp = document.createElement('img');
-        thumbUp.src = 'assets/thumb-up.png';
-        thumbUp.alt = 'Thumbs up icon';
+    const thumbUp = document.createElement('img');
+    thumbUp.src = 'assets/thumb-up.png';
+    thumbUp.alt = 'Thumbs up icon';
 
-        const thumbDown = document.createElement('img');
-        thumbDown.src ='assets/thumb-down.png';
-        thumbDown.alt = 'Thumbs down icon';
+    const thumbDown = document.createElement('img');
+    thumbDown.src ='assets/thumb-down.png';
+    thumbDown.alt = 'Thumbs down icon';
 
-        if (book.read) {
-            // "not read" icon gets lower opacity
-            thumbDown.classList.add('inactive'); 
-        } else {
-            thumbUp.classList.add('inactive');
-        }
-
-        const remove = document.createElement('button');
-        remove.textContent = 'x';
-
-        toggleRead.appendChild(thumbUp);
-        toggleRead.appendChild(thumbDown);
-        sidebar.appendChild(toggleRead);
-        sidebar.appendChild(remove);
-        card.appendChild(sidebar);
-
-        // -- Book cover components --
-        const cover = document.createElement('div');
-        cover.classList.add('cover');
-
-        const title = document.createElement('h2')
-        title.textContent = book.title;
-
-        const author = document.createElement('p')
-        author.textContent = book.author;
-
-        const pages = document.createElement('p')
-        pages.textContent = book.pages;
-
-        cover.appendChild(title);
-        cover.appendChild(author);
-        cover.appendChild(pages);
-        card.appendChild(cover);
-
-        // Add book to shelf
-        const shelf = document.querySelector('.container');
-        shelf.appendChild(card);
+    if (book.read) {
+        // "not read" icon gets lower opacity
+        thumbDown.classList.add('inactive'); 
+    } else {
+        thumbUp.classList.add('inactive');
     }
+
+    const remove = document.createElement('button');
+    remove.textContent = 'x';
+
+    toggleRead.appendChild(thumbUp);
+    toggleRead.appendChild(thumbDown);
+    sidebar.appendChild(toggleRead);
+    sidebar.appendChild(remove);
+    card.appendChild(sidebar);
+
+    // -- Book cover components --
+    const cover = document.createElement('div');
+    cover.classList.add('cover');
+
+    const title = document.createElement('h2')
+    title.textContent = book.title;
+
+    const author = document.createElement('p')
+    author.textContent = book.author;
+
+    const pages = document.createElement('p')
+    pages.textContent = book.pages;
+
+    cover.appendChild(title);
+    cover.appendChild(author);
+    cover.appendChild(pages);
+    card.appendChild(cover);
+
+    // Add book to shelf
+    const shelf = document.querySelector('.container');
+    shelf.appendChild(card);
 }
-
-addBook('Hello', 'Goodbye', '123', true);
-addBook('Howdy', 'Partner', '246', false);
-
-updateDisplay();
 
 /*
 TO READ/UNREAD A BOOK
