@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.card {
+    border: 1px solid black;
+
+    display: grid;
+    grid-template-columns: 30px 180px;
+    grid-template-rows: 30px 207px;
+
+    text-align: center;
+}
+
+.card .side-bar,
+.card .cover {
+    display: flex;
+    flex-direction: column;
+}
+
+.card .side-bar {
+    grid-row: 2 / 3;
+
+    justify-content: space-between;
+}
+
+.card .read-status {
+    grid-area: 1 / 2 / 2 / 3;
+
+    margin-top: auto;
+}
+
+.card .cover {
+    grid-area: 2 / 2 / 3 / 3;
+    padding: 20px 10px 20px 20px;
+
+    justify-content: flex-start;
+
+    /* Dynamically set via JS */
+    color: #9F8883;
+    background-image: url(assets/book-lb.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.side-bar img {
+    width: 20px;
+    height: auto;
+}
+
+.inactive {
+    opacity: 25%;
+}
+
+.side-bar div,
+.side-bar p {
+    padding: 5px 0;
+    background-color: #fff;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+}
+
+.side-bar p {
+    margin-bottom: 10px;
+}
+
+.cover p {
+    font-size: 14px;
+}
+.cover p:last-child {
+    margin-top: auto;
+}
