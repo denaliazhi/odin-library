@@ -16,7 +16,7 @@ _(Translated by [Shakespeare](https://openl.io/translate/shakespearean)_)
 - Bestow thy thumb (up or down) to books thou hast or hast not read
 - Cast away volumes from thy library with but a simple click
 
-**If thou hast interest** → [<kbd> <br> Live preview <br> </kbd>](https://denaliazhi.github.io/odin-library/)
+**If thou hast interest** → [<kbd> <br> Live preview <br> </kbd>](https://denaliazhi.github.io/ye-olde-bookshelf/)
 
 ---
 
