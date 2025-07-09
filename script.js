@@ -94,7 +94,7 @@ function updateDisplay(book) {
     
     card.appendChild(readStatus);
 
-    // -- Side bar components --
+    // Create side bar
 
     const sidebar = document.createElement('div');
     sidebar.classList.add('side-bar');
@@ -125,7 +125,7 @@ function updateDisplay(book) {
     sidebar.appendChild(remove);
     card.appendChild(sidebar);
 
-    // -- Book cover components --
+    // Create book cover
     const cover = document.createElement('div');
     cover.classList.add('cover');
 
@@ -142,6 +142,15 @@ function updateDisplay(book) {
     cover.appendChild(author);
     cover.appendChild(pages);
     card.appendChild(cover);
+
+    // Add listener to remove book if 'x' clicked
+    card.addEventListener("click", (e) => {
+        if(e.target.tagName === 'BUTTON') {
+            const id = card.getAttribute('data-id');
+            removeBook(id);
+            card.remove();
+        }
+    })
 
     // Add book to shelf
     const shelf = document.querySelector('.container');
@@ -165,3 +174,8 @@ Function: removeBook()
     3. Remove element from HTML
     4. Traverse array and remove element with matching id
 */
+
+function removeBook(id) {
+    const index = library.findIndex((item) => item.id === id);
+    library.splice(index, 1);
+}
