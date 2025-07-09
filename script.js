@@ -104,10 +104,12 @@ function updateDisplay(book) {
     const thumbUp = document.createElement('img');
     thumbUp.src = 'assets/thumb-up.png';
     thumbUp.alt = 'Thumbs up icon';
+    thumbUp.classList.add('thumb-up');
 
     const thumbDown = document.createElement('img');
     thumbDown.src ='assets/thumb-down.png';
     thumbDown.alt = 'Thumbs down icon';
+    thumbDown.classList.add('thumb-down');
 
     if (book.read) {
         // "not read" icon gets lower opacity
@@ -143,12 +145,34 @@ function updateDisplay(book) {
     cover.appendChild(pages);
     card.appendChild(cover);
 
-    // Add listener to remove book if 'x' clicked
     card.addEventListener("click", (e) => {
-        if(e.target.tagName === 'BUTTON') {
-            const id = card.getAttribute('data-id');
+        const id = card.getAttribute('data-id');
+        const clicked = e.target;
+
+        // Add listener to remove book if 'x' clicked
+        if(clicked.tagName === 'BUTTON') {
             removeBook(id);
             card.remove();
+
+        // Add listener to toggle read status
+        } else if (
+            clicked.tagName === 'IMG' 
+            && clicked.classList.contains('inactive')) 
+        {
+            clicked.classList.remove('inactive')
+            console.log(card);
+
+            // REFACTOR THIS LATER
+            if (clicked.classList.contains('thumb-up')) {
+                card.querySelector('.thumb-down')
+                    .classList.add('inactive');
+                card.querySelector('.read-status').textContent = 'didst read';
+            } else {
+                card.querySelector('.thumb-up')
+                    .classList.add('inactive');
+                    card.querySelector('.read-status').textContent = 'didst not read';
+            }
+            setRead(id);
         }
     })
 
@@ -165,6 +189,11 @@ Prototype: Book.prototype
    2. Invert object read property
    3. Change read status icon style
 */
+
+function setRead(id) {
+    const index = library.findIndex((item) => item.id === id);
+    library[index].read = !library[index].read; 
+}
 
 /*
 TO REMOVE A BOOK
