@@ -7,7 +7,8 @@
 body {
     background-color: #f1f1f1;
     text-align: center;
-    font-family:  "IM Fell English", 'Times New Roman', serif;
+    cursor: url('assets/quill-cursor.png'), auto;
+    font-family:  'IM Fell English', 'Times New Roman', serif;
 }
 
 body > div {
@@ -31,6 +32,12 @@ input:focus {
     appearance: none;
     border: none;
     outline: none;
+}
+
+button:hover,
+input:hover,
+.side-bar img:hover {
+    cursor: pointer;
 }
 
 /* ---- HEADER ---- */
@@ -98,7 +105,7 @@ form div:nth-child(2) label {
 }
 
 form div:nth-child(odd) input,
-form input[type="number"] {
+form input[type='number'] {
     width: 100%;
 }
 
@@ -111,26 +118,34 @@ form + button {
 
 form input {
     background-color: #f1f1f1;
-    border-radius: 0.2rem;
+    border-radius: 0.25rem;
 }
 
 form input[type='text'],
 form input[type='number'] {
     padding: 0.2rem 1rem;
+    box-shadow: inset 0 2px 2px 0 #0000000e;
 }
 
-form input[type="checkbox"] {
+form input[type='checkbox'] {
     border: #000 1px solid;
-    width: 20px;
+    width: 22px;
 }
 
-form input[type="checkbox"]:checked {
+form input[type='checkbox']:checked {
     background-image: url(assets/checkmark.png);
     background-size: auto 100%;
     background-repeat: no-repeat;
 }
 
 /* ---- CONTAINER ---- */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
 
 .card {
     display: grid;
