@@ -159,7 +159,7 @@ function updateDisplay(book) {
             clicked.tagName === 'IMG' 
             && clicked.classList.contains('inactive')) 
         {
-            clicked.classList.remove('inactive')
+            clicked.classList.remove('inactive');
             console.log(card);
 
             // REFACTOR THIS LATER
@@ -172,7 +172,7 @@ function updateDisplay(book) {
                     .classList.add('inactive');
                     card.querySelector('.read-status').textContent = 'didst not read';
             }
-            setRead(id);
+            setRead(id); // This should be used to set text content above
         }
     })
 

@@ -17,15 +17,6 @@ body > div {
     margin: auto;
 }
 
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.31rem;
-}
-
 button, 
 input,
 input:focus {
@@ -54,6 +45,7 @@ header img {
 }
 
 header h1 {
+    font-size: 2.5rem;
     margin-top: auto;
     width: 11.68rem;
     text-align: left;
@@ -141,16 +133,16 @@ form input[type='checkbox']:checked {
 /* ---- CONTAINER ---- */
 
 .container {
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     gap: 2rem;
 }
 
 .card {
     display: grid;
-    grid-template-columns: 1.87rem 11.25rem;
-    grid-template-rows: 1.87rem 12.94rem;
+    grid-template-columns: 1.5rem 9rem;
+    grid-template-rows: 1.5rem 10.35rem;
 
     text-align: center;
 }
@@ -202,19 +194,23 @@ form input[type='checkbox']:checked {
 
 .card .cover {
     grid-area: 2 / 2 / 3 / 3;
-    padding: 1.25rem 0.63rem 1.25rem 1.25rem;
+    padding: 1rem 0.7rem 1rem 1.2rem;
 
     justify-content: flex-start;
 
-    /* Dynamically set via JS */
     color: #9F8883;
     background-image: url(assets/book-lb.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
 }
 
+.cover h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.31rem;
+}
+
 .cover p {
-    font-size: 0.87rem;
+    font-size: 0.7rem;
 }
 
 .cover p:last-child {
