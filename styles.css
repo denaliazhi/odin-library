@@ -216,3 +216,8 @@ form input[type='checkbox']:checked {
 .cover p:last-child {
     margin-top: auto;
 }
+
+.cover h2,
+.cover p {
+    overflow-wrap: break-word;
+}

@@ -1,32 +1,12 @@
 /*
-
-PREMISE
-
-This app will allow users to maintain a digital 'library' 
-of books. Users will be able to add/remove records to/from 
-the library. Each record of a book will show its title, 
-author, page count, and read status (whether the user has
-read the book).
-
+This code allows users to maintain (add/remove)
+a digital 'library' of books. 
 */
 
-// PSEUDOCODE
-// Javascript:
-
-/*
-TO STORE BOOKS
-Array: library
-    Represent library as an array in which to store book objects
-*/
+// Stores Book objects
 const library = [];
 
-/*
-TO CREATE A BOOK
-Constructor: Book()
-    1. Params: title (str), author (str), pages (int), read (bool)
-    2. Store arguments as object properties of same names
-    3. Generate unique ID for book and assign to id property
-*/
+// Constructor to create a Book object
 function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error('Expecting "new" operator when calling constructor')
@@ -38,22 +18,21 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-/*
-TO ADD A BOOK TO LIBRARY
-Function: addBook()
-    1. Listen for 'Add Book' button click 
-    2. Retrieve the form inputs for title, author, 
-    page count, and read status
-    3. Call Book() with form inputs as args (type cast)
-    4. Push book object to library array
-    4. Call updateDisplay()
-*/
+// Calls constructor and stores new Book in library
+function addBook(title, author, pages, read) {
+    const pagesAsInt = +pages;
+    const book = new Book(title, author, pagesAsInt, read);
+    library.push(book);
+}
+
+// Takes submitted form data to create and display Book object
 const bookForm = document.querySelector("#add-book-form");
 
 bookForm.addEventListener("submit", (e) => {
     e.preventDefault(); //Prevent default form submission
 
     const bookData = new FormData(bookForm);
+
     addBook(bookData.get('title'), 
             bookData.get('author'),
             bookData.get('pages'),
@@ -62,40 +41,38 @@ bookForm.addEventListener("submit", (e) => {
     updateDisplay(library.at(-1));
 })
 
-function addBook(title, author, pages, read) {
-    const pagesAsInt = +pages;
-    const book = new Book(title, author, pagesAsInt, read);
-    library.push(book);
-}
+// Stores book cover styles for rendering
+const styles = [
+    {
+        bg: 'url("assets/book-r.png")',
+        color: '#B77B82'
+    },
+    {
+        bg: 'url("assets/book-g.png")',
+        color: '#858E85'
+    },
+    {
+        bg: 'url("assets/book-db.png")',
+        color: '#837A76'
+    }
+]
 
-/*
-TO UPDATE SHELF DISPLAY
-Function: updateDisplay()
-    1. Loop through array
-    2. For each book in library, add its properties as
-    text to HTML card (title, author, pages)
-    3. Assign id property to data-id attribute of card
-    4. Determine icon (thumbs up / down) for read status
-    5. Generate random number to determine color of
-    book cover and assign bg-image of cover
-    6. Assign matching style classes to card
-    7. Append card to shelf container
-*/
-
+// Renders Book object on client's browser
 function updateDisplay(book) {
 
+    // Creates container to hold book cover and 'editable' elements
     const card = document.createElement('div');
     card.classList.add('card');
     card.setAttribute('data-id', book.id);
 
+    // Creates read status shown over book cover
     const readStatus = document.createElement('p');
     readStatus.classList.add('read-status');
     readStatus.textContent = book.read ? 'didst read' : 'didst not read';
     
     card.appendChild(readStatus);
 
-    // Create side bar
-
+    // Creates side bar (read status toggle, remove book button)
     const sidebar = document.createElement('div');
     sidebar.classList.add('side-bar');
 
@@ -127,7 +104,7 @@ function updateDisplay(book) {
     sidebar.appendChild(remove);
     card.appendChild(sidebar);
 
-    // Create book cover
+    // Creates actual book cover (title, author, page count)
     const cover = document.createElement('div');
     cover.classList.add('cover');
 
@@ -145,24 +122,32 @@ function updateDisplay(book) {
     cover.appendChild(pages);
     card.appendChild(cover);
 
+    // Creates event listener for editable elements
     card.addEventListener("click", (e) => {
         const id = card.getAttribute('data-id');
         const clicked = e.target;
 
-        // Add listener to remove book if 'x' clicked
-        if(clicked.tagName === 'BUTTON') {
+        // // Listens to cover click and changes color
+        // if (clicked.classList.contains('cover')) {
+        //     const option = Math.floor(Math.random() * 3);
+        //     console.log(option);
+        //     console.log(styles[option]);
+        //     clicked.style.backgroundImage = styles[option].bg;
+        //     clicked.style.color = styles[option].color;
+        // } else 
+
+        // Listens to remove book if 'x' clicked
+        if (clicked.tagName === 'BUTTON') {
             removeBook(id);
             card.remove();
 
-        // Add listener to toggle read status
+        // Listens to toggle read status
         } else if (
             clicked.tagName === 'IMG' 
             && clicked.classList.contains('inactive')) 
         {
             clicked.classList.remove('inactive');
-            console.log(card);
 
-            // REFACTOR THIS LATER
             if (clicked.classList.contains('thumb-up')) {
                 card.querySelector('.thumb-down')
                     .classList.add('inactive');
@@ -172,39 +157,31 @@ function updateDisplay(book) {
                     .classList.add('inactive');
                     card.querySelector('.read-status').textContent = 'didst not read';
             }
-            setRead(id); // This should be used to set text content above
+            setRead(id); 
         }
     })
 
-    // Add book to shelf
+    // Adds book to parent container
     const shelf = document.querySelector('.container');
     shelf.appendChild(card);
 }
 
-/*
-TO READ/UNREAD A BOOK
-Prototype: Book.prototype
-   Function: setRead()
-   1. Listen for thumbs up / down button click
-   2. Invert object read property
-   3. Change read status icon style
-*/
-
+// Toggles read status of Book object
 function setRead(id) {
     const index = library.findIndex((item) => item.id === id);
     library[index].read = !library[index].read; 
 }
 
-/*
-TO REMOVE A BOOK
-Function: removeBook()
-    1. Listen for x button click
-    2. Get data-id of book on which event occurred
-    3. Remove element from HTML
-    4. Traverse array and remove element with matching id
-*/
-
+// Removes Book object from library
 function removeBook(id) {
     const index = library.findIndex((item) => item.id === id);
     library.splice(index, 1);
 }
+
+// Adds sample Books to library
+addBook('Romeo & Juliet', 'William Shakespeare', '432', true);
+updateDisplay(library.at(0))
+addBook('Aeneid', 'Virgil', '496', false);
+updateDisplay(library.at(1))
+addBook('Letters of a Stoic', 'Seneca', '254', true);
+updateDisplay(library.at(2))
