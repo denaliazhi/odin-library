@@ -12,7 +12,7 @@ body {
 }
 
 body > div {
-    padding-top: 3.5rem;
+    padding: 3.5rem 0;
     width: clamp(37.13rem, 80%, 50rem);
     margin: auto;
 }
