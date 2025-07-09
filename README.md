@@ -8,7 +8,7 @@ By Denalia Zhi  [👩🏻](https://github.com/denaliazhi)
 **Hail, time’s wayfarer.** Thou art a most worthy soul, judging by the tomes thou dost bear. 
 
 But soft! What if thou couldst keep account of every tome thou hast perused without so much as raising a quill?
-Permit me to unveil unto thee this marvel of the two-and-twentieth century: the library digital.
+Permit me to unveil this marvel of the century: the library digital.
 _(Translated by [Shakespeare](https://openl.io/translate/shakespearean)_)
 
 ### Features:
