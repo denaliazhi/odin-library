@@ -138,7 +138,7 @@ function updateDisplay(book) {
     author.textContent = book.author;
 
     const pages = document.createElement('p')
-    pages.textContent = book.pages;
+    pages.textContent = `${book.pages} pages`;
 
     cover.appendChild(title);
     cover.appendChild(author);
